@@ -1,3 +1,19 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from .models import News, Category
 
-# Create your views here.
+def newsList(request):
+    # newsList = News.objects.all()
+    # newsList = News.published.all()
+    newsList = News.objects.filter(status=News.Status.Published)
+    context = {
+        "newsList": newsList
+    }
+    return  render(request, "news/newsList.html", context)
+
+
+def newsDetail(request, id):
+    newsDetail = get_object_or_404(News, id=id, status=News.Status.Published)
+    context = {
+        'newsDetail': newsDetail
+    }
+    return render(request, 'news/newsDetail.html', context)
