@@ -1,5 +1,5 @@
-from django.shortcuts import render, get_object_or_404
-from .models import News, Category
+from django.shortcuts import render, get_object_or_404, HttpResponse
+from .models import News, Category, Contact
 
 def newsList(request):
     # newsList = News.objects.all()
@@ -26,4 +26,20 @@ def homePageView(request):
         'category' : category
     }
     return render(request, "news/index.html", context)
+
+def contactPageView(request):
+    form = Contact(request.POST or None)
+    if request.method  == "POST" and form.is_valid():
+        form.save()
+        return HttpResponse("<h2>Malumotlar muvaffaqqiyatli jo'natildi!</h2>")
+    context = {
+        'form' : form
+    }
+    return render(request, 'news/contact.html', context)
+
+def notFound(request):
+    context = {
+
+    }
+    return render(request, "news/404.html", context)
 

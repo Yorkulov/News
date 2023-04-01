@@ -34,12 +34,7 @@ a:focus {
     text-decoration: none
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
     font-family: 'Oswald', sans-serif
 }
 
@@ -234,8 +229,7 @@ img:hover {
     transition: all 0.5s
 }
 
-.scrollToTop:hover,
-.scrollToTop:focus {
+.scrollToTop:hover, .scrollToTop:focus {
     text-decoration: none;
     outline: none
 }
@@ -382,14 +376,11 @@ img:hover {
     border: none
 }
 
-.navbar-inverse .navbar-nav>li>a:hover,
-.navbar-inverse .navbar-nav>li>a:focus {
+.navbar-inverse .navbar-nav>li>a:hover, .navbar-inverse .navbar-nav>li>a:focus {
     color: #fff
 }
 
-.navbar-inverse .navbar-nav>.active>a,
-.navbar-inverse .navbar-nav>.active>a:hover,
-.navbar-inverse .navbar-nav>.active>a:focus {
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:hover, .navbar-inverse .navbar-nav>.active>a:focus {
     color: #fff
 }
 
@@ -426,8 +417,7 @@ img:hover {
     transition: all 0.5s
 }
 
-.dropdown-menu>li>a:hover,
-.dropdown-menu>li>a:focus {
+.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus {
     color: #fff
 }
 
@@ -663,16 +653,14 @@ img:hover {
     left: 60px
 }
 
-.slick-prev,
-.slick-next {
+.slick-prev, .slick-next {
     background-color: #000;
     top: 10%;
     width: 40px;
     height: 40px
 }
 
-.slick-prev:hover,
-.slick-next:hover {
+.slick-prev:hover, .slick-next:hover {
     opacity: 0.5
 }
 
@@ -720,8 +708,7 @@ img:hover {
     width: 100%
 }
 
-.latest_post_container:hover #prev-button,
-.latest_post_container:hover #next-button {
+.latest_post_container:hover #prev-button, .latest_post_container:hover #next-button {
     display: block
 }
 
@@ -938,7 +925,8 @@ img:hover {
     min-height: 100%;
     max-width: 100%;
     width: 100%;
-    height: 100% opacity:0.8
+    height: 100%;
+    opacity: 0.8;
 }
 
 .photo_grid figure figcaption {
@@ -950,8 +938,7 @@ img:hover {
     backface-visibility: hidden
 }
 
-.photo_grid figure figcaption::before,
-.photo_grid figure figcaption::after {
+.photo_grid figure figcaption::before, .photo_grid figure figcaption::after {
     pointer-events: none
 }
 
@@ -972,8 +959,7 @@ img:hover {
     font-weight: 800
 }
 
-.photo_grid figure h2,
-.photo_grid figure a {
+.photo_grid figure h2, .photo_grid figure a {
     margin: 0
 }
 
@@ -993,8 +979,7 @@ figure.effect-layla figcaption {
     padding: 1.5em
 }
 
-figure.effect-layla figcaption::before,
-figure.effect-layla figcaption::after {
+figure.effect-layla figcaption::before, figure.effect-layla figcaption::after {
     position: absolute;
     content: '';
     opacity: 0
@@ -1039,16 +1024,12 @@ figure.effect-layla a {
     transform: translate3d(0, -10px, 0)
 }
 
-figure.effect-layla img,
-figure.effect-layla h2 {
+figure.effect-layla img, figure.effect-layla h2 {
     -webkit-transform: translate3d(0, -30px, 0);
     transform: translate3d(0, -30px, 0)
 }
 
-figure.effect-layla img,
-figure.effect-layla figcaption::before,
-figure.effect-layla figcaption::after,
-figure.effect-layla a {
+figure.effect-layla img, figure.effect-layla figcaption::before, figure.effect-layla figcaption::after, figure.effect-layla a {
     -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
     transition: opacity 0.35s, transform 0.35s
 }
@@ -1059,8 +1040,7 @@ figure.effect-layla:hover img {
     transform: translate3d(0, 0, 0)
 }
 
-figure.effect-layla:hover figcaption::before,
-figure.effect-layla:hover figcaption::after {
+figure.effect-layla:hover figcaption::before, figure.effect-layla:hover figcaption::after {
     opacity: 1;
     -webkit-transform: scale(1);
     transform: scale(1)
@@ -1070,17 +1050,13 @@ figure.effect-layla:hover h2 {
     padding-top: 26%
 }
 
-figure.effect-layla:hover h2,
-figure.effect-layla:hover a {
+figure.effect-layla:hover h2, figure.effect-layla:hover a {
     opacity: 1;
     -webkit-transform: translate3d(0, -35px, 0);
     transform: translate3d(0, -35px, 0)
 }
 
-figure.effect-layla:hover figcaption::after,
-figure.effect-layla:hover h2,
-figure.effect-layla:hover a,
-figure.effect-layla:hover img {
+figure.effect-layla:hover figcaption::after, figure.effect-layla:hover h2, figure.effect-layla:hover a, figure.effect-layla:hover img {
     -webkit-transition-delay: 0.15s;
     transition-delay: 0.15s
 }
@@ -1160,15 +1136,12 @@ figure.effect-layla:hover img {
     transition: all 0.5s
 }
 
-.nav-tabs>li>a:hover,
-.nav-tabs>li>a:focus {
+.nav-tabs>li>a:hover, .nav-tabs>li>a:focus {
     color: #fff !important;
     border: none
 }
 
-.nav-tabs>li.active>a,
-.nav-tabs>li.active>a:hover,
-.nav-tabs>li.active>a:focus {
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
     border-width: 0;
     border-color: #ddd #ddd transparent;
     color: #fff
@@ -1312,8 +1285,7 @@ figure.effect-layla:hover img {
     text-align: center
 }
 
-.pagination>li>a,
-.pagination>li>span {
+.pagination>li>a, .pagination>li>span {
     background-color: #000;
     border: 1px solid #000;
     color: #eee;
@@ -1323,21 +1295,18 @@ figure.effect-layla:hover img {
     transition: all 0.5s
 }
 
-.pagination>li>a:hover,
-.pagination>li>a:focus {
+.pagination>li>a:hover, .pagination>li>a:focus {
     background-color: #d083cf;
     color: #fff;
     border-color: #d083cf
 }
 
-.pagination>li:first-child>a,
-.pagination>li:first-child>span {
+.pagination>li:first-child>a, .pagination>li:first-child>span {
     border-bottom-left-radius: 0;
     border-top-left-radius: 0
 }
 
-.pagination>li:last-child>a,
-.pagination>li:last-child>span {
+.pagination>li:last-child>a, .pagination>li:last-child>span {
     border-bottom-right-radius: 0;
     border-top-right-radius: 0
 }
@@ -1368,15 +1337,13 @@ figure.effect-layla:hover img {
     padding: 5px 0px
 }
 
-.post_commentbox a,
-.post_commentbox span {
+.post_commentbox a, .post_commentbox span {
     color: #798992;
     font-size: 11px;
     margin-right: 5px
 }
 
-.post_commentbox a>i,
-.post_commentbox span>i {
+.post_commentbox a>i, .post_commentbox span>i {
     margin-right: 5px
 }
 
@@ -1696,9 +1663,7 @@ figure.effect-layla:hover img {
     margin-bottom: 20px
 }
 
-.contact_form input[type="text"],
-.contact_form input[type="email"],
-.contact_form textarea {
+.contact_form input[type="text"], .contact_form input[type="email"], .contact_form textarea {
     border-radius: 0;
     margin-bottom: 30px
 }
@@ -1902,8 +1867,7 @@ figure.effect-layla:hover img {
             width: 32.3%
         }
 
-        .pagination>li>a,
-        .pagination>li>span {
+        .pagination>li>a, .pagination>li>span {
             padding: 4px 8px
         }
     }
