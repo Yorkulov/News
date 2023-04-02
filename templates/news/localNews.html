@@ -1,0 +1,20 @@
+{% extends 'news/base.html' %}
+{% block title %} O'zbekiston Yangiliklari {% endblock title %}
+{% block content %}
+    <h2 class="text-center display-2">O'zbekiston Yangiliklari</h2>
+    {% for news in localNews %}
+        <div class="div" style="padding: 50px">
+            <a href="{{ news.get_absolute_url }}">
+                <div class="row">
+                    <div class="col-4" style="float: left; margin-right: 30px;">
+                        <img src="{{ news.image.url }}" alt="Picture" style="width: 200px;">
+                    </div>
+                    <div class="col-8">
+                        <p>{{ news.create_time }}</p>
+                        <h4>{{ news.title }}</h4>
+                    </div>
+                </div>
+            </a>
+        </div>
+    {% endfor%}
+{% endblock content %}

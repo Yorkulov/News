@@ -38,7 +38,7 @@
             </ul>
           </div>
           <div class="header_top_right">
-            <p>Friday, December 05, 2045</p>
+            <p>{% now "j F Y H:i" %}</p>
           </div>
         </div>
       </div>
@@ -58,18 +58,12 @@
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav main_nav">
           <li class="active"><a href="{% url 'HomePageView' %}"><span class="fa fa-home desktop-home"></span><span class="mobile-show">Home</span></a></li>
-          <li><a href="#">Technology</a></li>
-          <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mobile</a>
-            <ul class="dropdown-menu" role="menu">
-              <li><a href="#">Android</a></li>
-              <li><a href="#">Samsung</a></li>
-              <li><a href="#">Nokia</a></li>
-              <li><a href="#">Walton Mobile</a></li>
-              <li><a href="#">Sympony</a></li>
-            </ul>
-          </li>
-          <li><a href="#">Laptops</a></li>
-          <li><a href="#">Tablets</a></li>
+          <li><a href="{% url 'LocalNewsView' %}">O'zbekiston</a></li>
+          <li><a href="{% url 'ForeignNewsView' %}">Jahon</a></li>
+          <li><a href="{% url 'TechnologyNewsView' %}">Fan-Texnika</a></li>
+          <li><a href="{% url 'JamiyatNewsView' %}">Jamiyat</a></li>
+          <li><a href="{% url 'IqtisodiyotNewsView' %}">Iqtisodiyot</a></li>
+          <li><a href="{% url 'SportNewsView' %}">Sport</a></li>
           <li><a href="{% url 'ContactPageView' %}">Contact Us</a></li>
           <li><a href="{% url 'NotFound' %}">404 Page</a></li>
         </ul>
@@ -82,7 +76,7 @@
         <div class="latest_newsarea"> <span>So'ngi Yangiliklar</span>
           <ul id="ticker01" class="news_sticker">
             {% for news in latestNews %}
-              <li><a href="{% url 'NewsDetail' news.pk %}"><img src="{{ news.image.url }}" alt="Picture"> {{ news.title }} </a></li>
+              <li><a href="{{ news.get_absolute_url }}"><img src="{{ news.image.url }}  " alt="Picture"> {{ news.title }} </a></li>
             {% endfor %}
           </ul>
           <div class="social_area">

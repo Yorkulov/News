@@ -14,8 +14,8 @@ def newsList(request):
     return render(request, "news/newsList.html", context)
 
 
-def newsDetail(request, id):
-    newsDetail = get_object_or_404(News, id=id, status=News.Status.Published)
+def newsDetail(request, news):
+    newsDetail = get_object_or_404(News, slug=news, status=News.Status.Published)
     context = {
         'newsDetail': newsDetail
     }
@@ -122,3 +122,66 @@ class ContactPageView(TemplateView):
             "form": form
         }
         return render(request, 'news/contact.html', context)
+
+
+class LocalNewsView(ListView):
+    model = News
+    template_name = "news/localNews.html"
+    context_object_name = "localNews"
+
+    def get_queryset(self):
+        localNews = News.published.all().filter(category__name = 'O\'zbekiston').order_by('-publish_time')
+        return localNews
+    
+
+class ForeignNewsView(ListView):
+    model = News
+    template_name = "news/foreignNews.html"
+    context_object_name = "foreignNews"
+
+    def get_queryset(self):
+        foreignNews = News.published.all().filter(category__name = 'Jahon').order_by('-publish_time')
+        return foreignNews
+    
+
+class JamiyatNewsView(ListView):
+    model = News
+    template_name = "news/jamiyatNews.html"
+    context_object_name = "jamiyatNews"
+
+    def get_queryset(self):
+        jamiyatNews = News.published.all().filter(category__name = 'Jamiyat').order_by('-publish_time')
+        return jamiyatNews
+    
+
+class IqtisodiyotNewsView(ListView):
+    model = News
+    template_name = "news/iqtisodiyotNews.html"
+    context_object_name = "iqtisodiyotNews"
+
+    def get_queryset(self):
+        iqtisodiyotNews = News.published.all().filter(category__name = 'Iqtisodiyot').order_by('-publish_time')
+        return iqtisodiyotNews
+    
+
+class TechnologyNewsView(ListView):
+    model = News
+    template_name = "news/technologyNews.html"
+    context_object_name = "technologyNews"
+
+    def get_queryset(self):
+        technologyNews = News.published.all().filter(category__name = 'Fan-Texnika').order_by('-publish_time')
+        return technologyNews
+    
+
+class SportNewsView(ListView):
+    model = News
+    template_name = "news/sportNews.html"
+    context_object_name = "sportNews"
+
+    def get_queryset(self):
+        sportNews = News.published.all().filter(category__name = 'Sport').order_by('-publish_time')
+        return sportNews
+    
+
+
