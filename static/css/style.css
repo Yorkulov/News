@@ -690,8 +690,8 @@ img:hover {
 }
 
 .latest_postnav {
-    height: auto !important;
-    margin-top: 20px
+    margin-top: 20px;
+    height: 400px !important;
 }
 
 .latest_postnav li {
@@ -823,7 +823,8 @@ img:hover {
     min-height: 300px
 }
 
-.spost_nav {}
+.spost_nav {
+}
 
 .spost_nav li {
     float: left;
@@ -1065,7 +1066,8 @@ figure.effect-layla:hover figcaption::after, figure.effect-layla:hover h2, figur
     float: left;
     display: inline;
     width: 100%;
-    margin-bottom: 20px
+    margin-bottom: 20px;
+    background-color: white;
 }
 
 .single_sidebar>h2 {

@@ -8,13 +8,8 @@ class PublishedManager(models.Manager):
 class Category(models.Model):
     name = models.CharField(max_length=150)
 
-class Contact(models.Model):
-    name = models.CharField(max_length=150)
-    email = models.EmailField(max_length=150)
-    message = models.TextField()
-
     def __str__(self):
-        return self.email
+        return self.name
 
 
 class News(models.Model):
@@ -47,4 +42,10 @@ class News(models.Model):
         return self.title
     
 
+class Contact(models.Model):
+    name = models.CharField(max_length=150)
+    email = models.EmailField(max_length=150)
+    message = models.TextField()
 
+    def __str__(self):
+        return self.name
