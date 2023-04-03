@@ -1,0 +1,22 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block title %}  {% endblock title %}  
+
+{% block content %}
+
+    <h2 class="text-center" style="color: grey;">Joriy yangilikni o'chirish</h2>
+    {% comment %} <form method='POST'> {% csrf_token %}
+        <p>{{ newsDetail.title | truncatewords:7}}... Sarlavhali yangilikni o'chirmoqchimisiz!</p>
+        <button type="submit" class="btn btn-danger ml-2 p-2">Tasdiqlash</button>
+    </form> {% endcomment %}
+    <form method="post">{% csrf_token %}
+        <h3>{{ object }}</h3>
+        <br>
+        
+        <p>Ushbu yangilikni o'chirmoqchimisiz? </p>
+        {{ form }}
+        <button type="submit" class="btn btn-danger">O'chirish</button>
+    </form>
+
+{% endblock content %}

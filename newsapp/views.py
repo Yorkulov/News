@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, HttpResponse
-from django.views.generic import TemplateView, ListView
+from django.urls import reverse_lazy
+from django.views.generic import TemplateView, ListView, UpdateView, CreateView, DeleteView
 from .models import News, Category
 from .forms import ContactForm
 
@@ -183,5 +184,23 @@ class SportNewsView(ListView):
         sportNews = News.published.all().filter(category__name = 'Sport').order_by('-publish_time')
         return sportNews
     
+
+class NewsUpdateView(UpdateView):
+    model = News
+    fields = ['title', 'body', 'image', 'category', 'status']
+    template_name = "crud/newsEdit.html"
+
+
+class NewsDeleteView(DeleteView):
+    model = News
+    success_url = reverse_lazy('HomePageView')
+    template_name = "crud/newsDelete.html"
+
+
+class NewsCreateView(CreateView):
+    model = News
+    template_name = "crud/newsCreate.html"
+    fields = ('title', 'slug', 'image', 'body', 'category', 'status')
+
 
 
