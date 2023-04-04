@@ -1,0 +1,14 @@
+{% extends 'news/base.html' %}
+
+{% block title %} Login sahifasi {% endblock title %}  
+
+{% block content %}
+
+    <h2 class="text-center">Veb-saytga kirish - login</h2>
+    <p>Iltimos, saytga kirish uchun quyidagi formani to'ldiring!</p>
+    <form method='post' enctype="multipart/form-data"> {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-info ml-2">Login</button>
+    </form>
+
+{% endblock content %}

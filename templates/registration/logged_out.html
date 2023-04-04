@@ -1,0 +1,11 @@
+{% extends 'news/base.html' %}
+
+{% block title %} Login sahifasi {% endblock title %}  
+
+{% block content %}
+
+    <h2 class="text-center">Veb-saytdan chiqish - log out</h2>
+    <p>Siz Veb-saytdan chiqdingiz!</p>
+    <a href="{% url 'LoginView' %}" class="btn btn-primary">Login qilish</a>
+
+{% endblock content %}

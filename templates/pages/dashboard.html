@@ -1,0 +1,19 @@
+{% extends 'news/base.html' %}
+
+{% block title %}Foydalanuvchi profili {% endblock title %}  
+
+{% block content %}
+
+    <h2 class="text-center">Xush kelibsiz {{ user.username }}</h2>
+    <h2>Siz Haqingizdagi Malumotlar!</h2> 
+    <p><a style="color: red;" href="{% url 'LogoutView' %}">Log out</a></p><hr>
+    <label>Username: </label><input value="{{ user.username }}" readonly placeholder="Malumot kiritilmagan"><br>
+    <label>Email: </label><input value="{{ user.email }}" readonly placeholder="Malumot kiritilmagan"><br>
+    <label>First Name: </label><input value="{{ user.first_name }}" readonly placeholder="Malumot kiritilmagan"><br>
+    <label>Last Name: </label><input value="{{ user.last_name }}" readonly placeholder="Malumot kiritilmagan"><br>
+    <h4 class=" btn btn-light">
+       <a href="{% url 'PasswordChangeView' %}">Parolni almashtirish</a> 
+    </h4>
+
+
+{% endblock content %}

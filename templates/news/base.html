@@ -38,6 +38,11 @@
             </ul>
           </div>
           <div class="header_top_right">
+            {% if request.user.is_authenticated %}
+            <p><a href="{% url 'UserProfile' %}" style="color: aqua; margin-left: 50px;">My Profile</a></p>
+            {% else %}
+            <p><a href="{% url 'LoginView' %}" style="color: aqua; margin-left: 50px;">Log In</a></p>
+            {% endif %}
             <p>{% now "j F Y H:i" %}</p>
           </div>
         </div>
