@@ -73,7 +73,7 @@
           <li><a href="{% url 'ContactPageView' %}">Contact Us</a></li>
           <li><a href="{% url 'NotFound' %}">404 Page</a></li>
           <li style="margin-top: 8px; position: relative; left: 50%;">
-            <form method="get" action="">{% csrf_token %}
+            <form method="get" action="{% url 'search_results' %}">
               <input type="search" name="q" placeholder="Qidirish..." class="form-control" style="border-radius: 25px;">
             </form>
           </li>

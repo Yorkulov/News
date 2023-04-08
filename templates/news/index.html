@@ -1,5 +1,6 @@
 {% extends 'news/base.html' %}
 {% load static %}
+{% load hitcount_tags %}
 
 {% block title %} Bosh Sahifa {% endblock title %}
 
@@ -116,7 +117,7 @@
                   {% if forloop.counter > 1 %}
                   <li>
                     <div class="media wow fadeInDown"> <a href="{{ news.get_absolute_url }}" class="media-left"> <img alt="" src="{{ news.image.url }}"> </a>
-                      <div class="media-body"> <a href="{{ news.get_absolute_url }}" class="catg_title"> {{ news.title | truncatewords:20}} </a> </div>
+                      <div class="media-body"> <a href="{{ news.get_absolute_url }}" class="catg_title"> {{ news.title | truncatewords:20}}</a> </div>
                     </div>
                   </li>
                   {% endif %}
@@ -182,7 +183,7 @@
                 {% if forloop.counter > 1 %}
                 <li>
                   <div class="media wow fadeInDown"> <a href="{{ news.get_absolute_url }}" class="media-left"> <img alt="" src="{{ news.image.url }}"> </a>
-                    <div class="media-body"> <a href="{{ news.get_absolute_url }}" class="catg_title"> {{ news.title | truncatewords:20 }}</a> </div>
+                    <div class="media-body"> <a href="{{ news.get_absolute_url }}" class="catg_title"> {{ news.title | truncatewords:20 }} </a> </div>
                   </div>
                 </li>
                 {% endif %}

@@ -1,5 +1,11 @@
 {% extends 'news/base.html' %}
+
+{% load static %}
+
+{% load hitcount_tags %}
+
 {% block title %} Jahon Yangiliklari {% endblock title %}
+
 {% block content %}
     <h2 class="text-center display-2"> Jahon Yangiliklari </h2>
     {% for news in foreignNews %}
@@ -10,7 +16,7 @@
                         <img src="{{ news.image.url }}" alt="Picture" style="width: 200px;">
                     </div>
                     <div class="col-8">
-                        <p>{{ news.create_time }}</p>
+                        <p>{{ news.create_time }} | <i class="fa fa-eye" aria-hidden="true"></i> {% get_hit_count for news %}</p>
                         <h4>{{ news.title }}</h4>
                     </div>
                 </div>

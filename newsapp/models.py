@@ -27,6 +27,7 @@ class News(models.Model):
     category = models.ForeignKey(Category,
                                  on_delete=models.CASCADE
                                  )
+    # view_count = models.IntegerField(default=0) # bu usul xato chunki bir foydalanuvchi sahifaga necha marotaba so'rov yuborsa har safar qoshib ketaveradi
     publish_time = models.DateTimeField(default=timezone.now)
     create_time = models.DateTimeField(auto_now_add=True)
     upload_time = models.DateTimeField(auto_now=True)

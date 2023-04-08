@@ -1,12 +1,16 @@
 from django.shortcuts import render, get_object_or_404, HttpResponse
 from django.urls import reverse_lazy
 from django.contrib.auth.models import User
+from django.db.models import Q
 from django.contrib.auth.mixins import LoginRequiredMixin
 from newsapp.custom_permissions import UserSuperPermissions
 from django.contrib.auth.decorators import login_required, user_passes_test 
 from django.views.generic import TemplateView, ListView, UpdateView, CreateView, DeleteView
 from .models import News, Category, Comment
 from .forms import ContactForm, CommentForm
+
+from hitcount.utils import get_hitcount_model
+from hitcount.views import HitCountMixin, HitCountDetailView
 
 
 def newsList(request):
@@ -21,8 +25,24 @@ def newsList(request):
 
 def newsDetail(request, news):
     newsDetail = get_object_or_404(News, slug=news, status=News.Status.Published)
+    context = {}
+    # hitcount logikasi
+    hit_count = get_hitcount_model().objects.get_for_object(newsDetail)
+    hits = hit_count.hits
+    hitcontext = context['hitcount'] = {'pk' : hit_count.pk}
+    hit_count_response = HitCountMixin.hit_count(request, hit_count)
+    if hit_count_response.hit_counted:
+        hits = hits + 1
+        hitcontext['hit_counted'] = hit_count_response.hit_counted
+        hitcontext['hit_message'] = hit_count_response.hit_message
+        hitcontext['total_hits'] = hits
+
     comments = newsDetail.comments.filter(active=True)
     new_comment = None
+
+    comment_count = comments.count() # izohlar soni
+    # newsDetail.view_count = newsDetail.view_count + 1
+    # newsDetail.save()   # comment .models qismida
     if request.method == "POST":
         comment_form = CommentForm(data=request.POST)
         if comment_form.is_valid():
@@ -42,9 +62,11 @@ def newsDetail(request, news):
         'newsDetail': newsDetail,
         'comments': comments,
         'new_comment': new_comment,
-        'comment_form': comment_form
+        'comment_form': comment_form,
+        "comment_count": comment_count,
     }
     return render(request, 'news/newsDetail.html', context)
+
 
 # def homePageView(request):
 #     newsList = News.objects.all().order_by('-publish_time')[:10]
@@ -234,3 +256,15 @@ def admin_page_view(request):
         "admin_users": admin_users
     }
     return render(request, "pages/admin_page.html", context)
+
+
+class SearchResultList(ListView):
+    model = News
+    template_name = "news/search.html"
+    context_object_name = 'all_news'
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        return News.objects.filter(
+            Q(title__icontains=query) | Q(body__icontains=query) # title hamda bodydan qidirish
+        )
