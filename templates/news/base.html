@@ -39,6 +39,7 @@
           </div>
           <div class="header_top_right">
             {% if request.user.is_authenticated %}
+            <p><a href="{% url 'LogoutView' %}" style="color: palegreen; margin-left: 50px;">Log Out</a></p>
             <p><a href="{% url 'UserProfile' %}" style="color: aqua; margin-left: 50px;">My Profile</a></p>
             {% else %}
             <p><a href="{% url 'LoginView' %}" style="color: aqua; margin-left: 50px;">Log In</a></p>
@@ -71,6 +72,11 @@
           <li><a href="{% url 'SportNewsView' %}">Sport</a></li>
           <li><a href="{% url 'ContactPageView' %}">Contact Us</a></li>
           <li><a href="{% url 'NotFound' %}">404 Page</a></li>
+          <li style="margin-top: 8px; position: relative; left: 50%;">
+            <form method="get" action="">{% csrf_token %}
+              <input type="search" name="q" placeholder="Qidirish..." class="form-control" style="border-radius: 25px;">
+            </form>
+          </li>
         </ul>
       </div>
     </nav>

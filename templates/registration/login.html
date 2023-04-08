@@ -5,10 +5,13 @@
 {% block content %}
 
     <h2 class="text-center">Veb-saytga kirish - login</h2>
+    <h2>Sizda ro'yxatdan o'tmagan bo'lsangiz <a href="{% url 'user_register' %}" class="text-danger">ro'yxatdan o'tishingiz</a> mumkin</h2>
+    <br>
     <p>Iltimos, saytga kirish uchun quyidagi formani to'ldiring!</p>
-    <form method='post' enctype="multipart/form-data"> {% csrf_token %}
+    <form method="post" enctype="multipart/form-data">{% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="btn btn-info ml-2">Login</button>
+        <button type="submit" class="btn btn-success m-2">Login qilish</button>
+        <a href="{% url 'password_reset' %}" class="btn btn-danger m-2">Parolni unutdingizmi</a>
     </form>
 
 {% endblock content %}

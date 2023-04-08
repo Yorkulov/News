@@ -1,5 +1,8 @@
 {% extends 'news/base.html' %}
 {% load static %}
+
+{% block title %} {{news.slug}} {% endblock title %}
+
 {% block content %}
   <div class="div" style="padding: 50px">
     <h2 style="font-weight: 700; font-size: 40px; line-height: 60px;">{{ newsDetail.title }}</h2>
@@ -10,9 +13,43 @@
     <br>
     <p style="margin-top: 70px; font-size: 24px; color: gray;">{{ newsDetail.body }}</p>
     <hr>
+
+    {% if request.user.is_authenticated and request.user.is_superuser %}
     <div class="buttons">
-        <a href="#" class="btn btn-danger m-2">O'chirish</a>
-        <a href="#" class="btn btn-primary m-2">Taxrirlash</a>
+      <a href="{% url 'news_update' newsDetail.slug %}" class="btn btn-primary m-2">Taxrirlash</a>
+      <a href="{% url 'news_delete' newsDetail.slug %}" class="btn btn-danger m-2">O'chirish</a>
     </div>
+    {% endif %}
+
+
+    {% for comment in comments %}
+
+    <div class="comment card" style="border-bottom: 1px solid gray">
+      <h5 style="width: 50%; display: inline-block;" class="text-left text-danger">{{ comment.user }}</h5>
+      <p style="width: 40%; display: inline-block;" class="text-muted text-right">{{ comment.created_time }}</p>
+      <div class="card-body">
+        <p>{{ comment.body }}</p>
+      </div>
+    </div style="margin-bottom: 30px">
+
+    {% endfor %}
+
+    {% if user.is_authenticated %}
+    <div class="col-md-8 card mb-4 mt-3">
+      <div class="card-body">
+        <h3>Izoh qoldirish</h3>
+        <form method="POST" style="margin-top: 1.3rem">{% csrf_token %}
+          {{ comment_form.as_p }}
+          <button type="submit" class="btn btn-primary btn-lg">
+            Yuborish
+          </button>
+        </form>
+      </div>
+    </div>
+    {% else %}
+    <h3>Faqatgina ro'yxatdan o'tgan foydalanuvchilar izoh qoldirishi mumkin</h3>
+    <p>Izoh qoldirish uchun <a href="{% url 'LoginView' %}" class="text-info" style="text-decoration: underline;"> login </a> qiling, Agarda siz ro'yxatdan o'tmagan bo'lsangiz <a href="{% url 'user_register' %}" class="text-info" style="text-decoration: underline;"> ro'yxatdan </a> o'tishingiz mumkin!</p>
+    {% endif %}
+
   </div>
 {% endblock %}

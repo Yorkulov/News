@@ -10,9 +10,11 @@
     <p>Ro'yxatdan o'tish uchun quyidagi formani to'ldiring: </p>
 
     <form method='post'>{% csrf_token %}
-        {{ user_form }} {% comment %} Function view {% endcomment %}
-        {% comment %} {{ form.as_p }} Class view {% endcomment %}
-        <button type="submit">Ro'yxatdan o'tish</button>
+        {{ user_form.as_p }}
+        {{ profile_form.as_p }}
+        {% comment %} {{ user_form }} Function view {% endcomment %}
+        {% comment %} {{ form.as_p }} Class {% endcomment %}
+        <button type="submit" class="btn btn-success m-2">Ro'yxatdan o'tish</button>
     </form>
 
 {% endblock content %}

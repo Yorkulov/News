@@ -1,8 +1,12 @@
 from django.shortcuts import render, get_object_or_404, HttpResponse
 from django.urls import reverse_lazy
+from django.contrib.auth.models import User
+from django.contrib.auth.mixins import LoginRequiredMixin
+from newsapp.custom_permissions import UserSuperPermissions
+from django.contrib.auth.decorators import login_required, user_passes_test 
 from django.views.generic import TemplateView, ListView, UpdateView, CreateView, DeleteView
-from .models import News, Category
-from .forms import ContactForm
+from .models import News, Category, Comment
+from .forms import ContactForm, CommentForm
 
 
 def newsList(request):
@@ -17,8 +21,28 @@ def newsList(request):
 
 def newsDetail(request, news):
     newsDetail = get_object_or_404(News, slug=news, status=News.Status.Published)
+    comments = newsDetail.comments.filter(active=True)
+    new_comment = None
+    if request.method == "POST":
+        comment_form = CommentForm(data=request.POST)
+        if comment_form.is_valid():
+            #yangi comment obyektini yaratamiz lekin DB ga saqlamaymiz
+            new_comment = comment_form.save(commit=False)
+            new_comment.news = newsDetail
+            #izoh egasin iso'rov yuborayotgan userga bog'lash
+            new_comment.user = request.user
+            #malumotlar bazasiga saqlaymiz
+            new_comment.save()
+            comment_form = CommentForm() # izoh qoldirilgandan so'ng inputdagi malumotni tozalash
+
+    else:
+        comment_form = CommentForm()
+    
     context = {
-        'newsDetail': newsDetail
+        'newsDetail': newsDetail,
+        'comments': comments,
+        'new_comment': new_comment,
+        'comment_form': comment_form
     }
     return render(request, 'news/newsDetail.html', context)
 
@@ -185,22 +209,28 @@ class SportNewsView(ListView):
         return sportNews
     
 
-class NewsUpdateView(UpdateView):
+class NewsUpdateView(UserSuperPermissions, UpdateView):
     model = News
     fields = ['title', 'body', 'image', 'category', 'status']
     template_name = "crud/newsEdit.html"
 
 
-class NewsDeleteView(DeleteView):
+class NewsDeleteView(UserSuperPermissions, DeleteView):
     model = News
-    success_url = reverse_lazy('HomePageView')
     template_name = "crud/newsDelete.html"
+    success_url = reverse_lazy('HomePageView')
 
 
-class NewsCreateView(CreateView):
+class NewsCreateView(UserSuperPermissions, CreateView):
     model = News
     template_name = "crud/newsCreate.html"
     fields = ('title', 'slug', 'image', 'body', 'category', 'status')
 
-
-
+@login_required
+@user_passes_test(lambda u:u.is_superuser)
+def admin_page_view(request):
+    admin_users = User.objects.filter(is_superuser=True)
+    context = {
+        "admin_users": admin_users
+    }
+    return render(request, "pages/admin_page.html", context)

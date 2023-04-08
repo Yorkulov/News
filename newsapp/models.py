@@ -1,5 +1,6 @@
 from django.utils import timezone
 from django.db import models
+from django.contrib.auth.models import User
 from django.urls import reverse
 
 class PublishedManager(models.Manager):
@@ -54,3 +55,23 @@ class Contact(models.Model):
 
     def __str__(self):
         return self.name
+    
+
+class Comment(models.Model):
+    news = models.ForeignKey(News,
+                             on_delete=models.CASCADE,
+                             related_name='comments')
+    
+    user = models.ForeignKey(User,
+                             on_delete=models.CASCADE,
+                             related_name='comments')
+    
+    body = models.TextField()
+    created_time = models.DateTimeField(auto_now_add=True)
+    active = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ['created_time'] # saralash
+
+    def __str__(self):
+        return f"Comment - {self.body} by {self.user}"

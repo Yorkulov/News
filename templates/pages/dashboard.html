@@ -1,4 +1,5 @@
 {% extends 'news/base.html' %}
+{% load static %}
 
 {% block title %}Foydalanuvchi profili {% endblock title %}  
 
@@ -7,12 +8,25 @@
     <h2 class="text-center">Xush kelibsiz {{ user.username }}</h2>
     <h2>Siz Haqingizdagi Malumotlar!</h2> 
     <p><a style="color: red;" href="{% url 'LogoutView' %}">Log out</a></p><hr>
+    {% if profile.photo.url is not None %}
+    <img src="{{ profile.photo.url }}" alt="Photo">
+    {% else %}
+    <h4>Profilingiz rasmi mavjud emas</h3>
+    {% endif %}
+    {% if profile.data_of_birth is not None %}
+    <h4>Tug'ilgan sanangiz {{ profile.data_of_birth }}</h4>
+    {% else %}
+    <h4>Tug'ilgan sanangiz haqidagi malumot mavjud emas!</h3>
+    {% endif %}
     <label>Username: </label><input value="{{ user.username }}" readonly placeholder="Malumot kiritilmagan"><br>
     <label>Email: </label><input value="{{ user.email }}" readonly placeholder="Malumot kiritilmagan"><br>
     <label>First Name: </label><input value="{{ user.first_name }}" readonly placeholder="Malumot kiritilmagan"><br>
     <label>Last Name: </label><input value="{{ user.last_name }}" readonly placeholder="Malumot kiritilmagan"><br>
-    <h4 class=" btn btn-light">
-       <a href="{% url 'PasswordChangeView' %}">Parolni almashtirish</a> 
+    <h4 class=" btn btn-danger">
+       <a href="{% url 'password_change' %}">Parolni almashtirish</a> 
+    </h4>
+    <h4 class="btn btn-danger">
+        <a href="{% url 'edit_user' %}">Profilni tahrirlash</a>
     </h4>
 
 
