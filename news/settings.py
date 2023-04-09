@@ -11,6 +11,12 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+from django.utils.encoding import get_system_encoding
+# from django.utils.encoding import force_text
+from django.utils.encoding import force_str
+import django
+from django.utils.encoding import force_str
+django.utils.encoding.force_text = force_str
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -31,20 +37,23 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'modeltranslation',
+    'django.contrib.admin',
     'newsapp',
     'account',
     'hitcount',
+    # 'newsapp.apps.AppConfig',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -74,6 +83,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'news.wsgi.application'
+# WSGI_APPLICATION = 'wsgi.application'
 
 
 # Database
@@ -109,13 +119,39 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'uz-uz'
 
 TIME_ZONE = 'Asia/Tashkent'
 
 USE_I18N = True
 
 USE_TZ = True
+
+
+
+from django.utils.translation import gettext_lazy as _
+# from django.utils.translation import ugettext_lazy as _
+
+# USE_I18N = True
+
+LANGUAGES = [
+    ('uz', _('Uzbek')),
+    ('en', _('English')),
+    ('ru', _('Russion')),
+]
+
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'uz'
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+MODELTRANSLATION_TRANSLATION_FILES = ('newsapp.translation',)
+MODELTRANSLATION_LANGUAGES = ('uz', 'en', 'ru')
+TRANSLATABLE_MODEL_MODULES = ["newsapp.models", "account.models"]
+
+LOCALE_PATHS = [
+    BASE_DIR / 'locale'
+]
+
+# IS_MONOLINGUAL=False
+
 
 
 # Static files (CSS, JavaScript, Images)
