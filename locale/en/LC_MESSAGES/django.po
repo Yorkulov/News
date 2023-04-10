@@ -1,0 +1,126 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-10 09:46+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: .\news\settings.py:126
+msgid "Uzbek"
+msgstr "Uzbek"
+
+#: .\news\settings.py:127
+msgid "English"
+msgstr "English"
+
+#: .\news\settings.py:128
+msgid "Russion"
+msgstr "Russion"
+
+#: .\templates\news\base.html:37
+msgid " Bosh sahifa "
+msgstr "Home"
+
+#: .\templates\news\base.html:38
+msgid " Biz haqimiada "
+msgstr "About us"
+
+#: .\templates\news\base.html:39
+msgid " Biz bilan bo'glanish "
+msgstr "Contact us"
+
+#: .\templates\news\base.html:44
+msgid " Saytdan chiqish "
+msgstr "Log out"
+
+#: .\templates\news\base.html:45
+msgid " Mening Profilim "
+msgstr "My profile"
+
+#: .\templates\news\base.html:47 .\templates\news\index.html:273
+msgid " Saytga kirish "
+msgstr "Log in"
+
+#: .\templates\news\base.html:69 .\templates\news\index.html:47
+msgid " O'zbekiston "
+msgstr "Uzbekiston"
+
+#: .\templates\news\base.html:70 .\templates\news\index.html:75
+msgid " Jahon "
+msgstr "Foriegn"
+
+#: .\templates\news\base.html:71 .\templates\news\index.html:103
+msgid " Fan-Texnika "
+msgstr "Technology"
+
+#: .\templates\news\base.html:72
+msgid " Jamiyat "
+msgstr "Society"
+
+#: .\templates\news\base.html:73
+msgid " Iqtisodiyot "
+msgstr "Economics"
+
+#: .\templates\news\base.html:74 .\templates\news\index.html:166
+msgid " Sport "
+msgstr "Sport"
+
+#: .\templates\news\base.html:75
+msgid " Biz bilan bo'g'lanish "
+msgstr "Contact us"
+
+#: .\templates\news\base.html:76
+msgid " 404 sahifa "
+msgstr "404 Page"
+
+#: .\templates\news\base.html:105
+msgid " So'ngi yangiliklar "
+msgstr "Latest news"
+
+#: .\templates\news\base.html:139
+msgid " Top rasmlar "
+msgstr "Fleicr Image"
+
+#: .\templates\news\index.html:24
+msgid " So'ngi yangiliklari "
+msgstr "Latest news"
+
+#: .\templates\news\index.html:131
+msgid " Rasmlar "
+msgstr "Pictures"
+
+#: .\templates\news\index.html:200
+msgid " Ommabop "
+msgstr "Popular"
+
+#: .\templates\news\index.html:257
+msgid " Homiylar "
+msgstr "Sponsors    "
+
+#: .\templates\news\index.html:260
+msgid " Kategoriyalar "
+msgstr "Categories"
+
+#: .\templates\news\index.html:262
+msgid " Kategoriyani tanlang "
+msgstr "Select categories"
+
+#: .\templates\news\index.html:269
+msgid " Linklar "
+msgstr "Links"
+
+#: .\templates\news\index.html:271
+msgid " Blog "
+msgstr "Blog"

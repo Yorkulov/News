@@ -11,12 +11,12 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
-from django.utils.encoding import get_system_encoding
-# from django.utils.encoding import force_text
-from django.utils.encoding import force_str
 import django
 from django.utils.encoding import force_str
 django.utils.encoding.force_text = force_str
+
+from decouple import config
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,32 +26,35 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-pvo51e*3ug_2%$2tq2c=scq^nroe8e@4s5vnl#n8xsnj5#)%f0'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ["*"]
+DEBUG = False
+
+ALLOWED_HOSTS = ["news-setes.uz", "www.news-setes.uz", '127.0.0.1']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'modeltranslation',
-    'django.contrib.admin',
     'newsapp',
     'account',
     'hitcount',
-    # 'newsapp.apps.AppConfig',
+    'modeltranslation',
+    'whitenoise.runserver_nostatic',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -127,38 +130,25 @@ USE_I18N = True
 
 USE_TZ = True
 
-
-
 from django.utils.translation import gettext_lazy as _
-# from django.utils.translation import ugettext_lazy as _
-
-# USE_I18N = True
 
 LANGUAGES = [
-    ('uz', _('Uzbek')),
-    ('en', _('English')),
-    ('ru', _('Russion')),
+    ('uz', _("Uzbek")),
+    ('en', _("English")),
+    ('ru', _("Russion")),
 ]
 
 MODELTRANSLATION_DEFAULT_LANGUAGE = 'uz'
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-MODELTRANSLATION_TRANSLATION_FILES = ('newsapp.translation',)
-MODELTRANSLATION_LANGUAGES = ('uz', 'en', 'ru')
-TRANSLATABLE_MODEL_MODULES = ["newsapp.models", "account.models"]
 
-LOCALE_PATHS = [
-    BASE_DIR / 'locale'
-]
-
-# IS_MONOLINGUAL=False
-
-
+LOCALE_PATHS = BASE_DIR, 'locale'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 MEDIA_URL = 'media/'
-MEDIA_ROOT = BASE_DIR / 'media/'
+MEDIA_ROOT = '/home/setes/news-setes.uz/django/MEDIA'  
+#local 
+# MEDIA_ROOT = BASE_DIR / 'media/'
 
 # STATIC_URL = 'static/'
 # STATICFILES_DIR = [BASE_DIR / 'static']
@@ -170,11 +160,17 @@ STATICFILES_FINDERS = [
 
 
 import os
-STATIC_ROOT = "/var/www/example.com/static/"
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
-]
+STATIC_ROOT = '/home/setes/news-setes.uz/django/staticfiles'
+STATICFILES_DIRS = ('/home/setes/news-setes.uz/django/static', )
+
+# Bu sozlamalar local uchun 
+# STATIC_ROOT = BASE_DIR / 'staticfiles'
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, "static"),
+# ]
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

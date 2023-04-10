@@ -1,6 +1,7 @@
 {% extends 'news/base.html' %}
 {% load static %}
 {% load hitcount_tags %}
+{% load i18n %}
 
 {% block title %} Bosh Sahifa {% endblock title %}
 
@@ -20,7 +21,7 @@
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="latest_post">
-          <h2><span>So'ngi yangiliklar</span></h2>
+          <h2><span>{% blocktrans %} So'ngi yangiliklari {% endblocktrans %}</span></h2>
           <div class="latest_post_container">
             <div id="prev-button"><i class="fa fa-chevron-up"></i></div>
             <ul class="latest_postnav">
@@ -43,7 +44,7 @@
       <div class="col-lg-8 col-md-8 col-sm-8">
         <div class="left_content">
           <div class="single_post_content">
-            <h2><span>O'zbekiston</span></h2>
+            <h2><span>{% blocktrans %} O'zbekiston {% endblocktrans %}</span></h2>
             <div class="single_post_content_left">
               <ul class="business_catgnav  wow fadeInDown">
                 {% for news in localNewsOne %}
@@ -71,7 +72,7 @@
           <div class="fashion_technology_area">
             <div class="fashion">
               <div class="single_post_content">
-                <h2><span>Jahon</span></h2>
+                <h2><span>{% blocktrans %} Jahon {% endblocktrans %}</span></h2>
                 <ul class="business_catgnav wow fadeInDown">
                   {% for news in jahonNewsList %}
                     {% if forloop.first %}
@@ -99,7 +100,7 @@
             </div>
             <div class="technology">
               <div class="single_post_content">
-                <h2><span>Fan-Texnologiya</span></h2>
+                <h2><span>{% blocktrans %} Fan-Texnika {% endblocktrans %}</span></h2>
                 <ul class="business_catgnav">
                   {% for news in technologyNewsList %}
                   {% if forloop.first %}
@@ -127,7 +128,7 @@
             </div>
           </div>
           <div class="single_post_content">
-            <h2><span>Photography</span></h2>
+            <h2><span>{% blocktrans %} Rasmlar {% endblocktrans %}</span></h2>
             <ul class="photograph_nav  wow fadeInDown">
               <li>
                 <div class="photo_grid">
@@ -162,7 +163,7 @@
             </ul>
           </div>
           <div class="single_post_content">
-            <h2><span>Sports</span></h2>
+            <h2><span>{% blocktrans %} Sport {% endblocktrans %}</span></h2>
             <div class="single_post_content_left">
               <ul class="business_catgnav">
                 {% for news in sportNewsList %}
@@ -196,7 +197,7 @@
       <div class="col-lg-4 col-md-4 col-sm-4">
         <aside class="right_content">
           <div class="single_sidebar">
-            <h2><span>Ommabop</span></h2>
+            <h2><span>{% blocktrans %} Ommabop {% endblocktrans %}</span></h2>
             <ul class="spost_nav">
               {% for news in newsList %}
               <li>
@@ -253,23 +254,23 @@
             </div>
           </div>
           <div class="single_sidebar wow fadeInDown">
-            <h2><span>Homiylar</span></h2>
+            <h2><span>{% blocktrans %} Homiylar {% endblocktrans %}</span></h2>
             <a class="sideAdd" href="#"><img src="{% static 'images/add_img.jpg' %}" alt=""></a> </div>
           <div class="single_sidebar wow fadeInDown">
-            <h2><span>Category Archive</span></h2>
+            <h2><span>{% blocktrans %} Kategoriyalar {% endblocktrans %}</span></h2>
             <select class="catgArchive">
-              <option> Categoriyani tanlang! </option>
+              <option> {% blocktrans %} Kategoriyani tanlang {% endblocktrans %} </option>
               {% for item in category %}
                 <option>{{ item.name }}</option>
               {% endfor %}
             </select>
           </div>
           <div class="single_sidebar wow fadeInDown">
-            <h2><span>Links</span></h2>
+            <h2><span>{% blocktrans %} Linklar {% endblocktrans %}</span></h2>
             <ul>
-              <li><a href="#">Blog</a></li>
+              <li><a href="#">{% blocktrans %} Blog {% endblocktrans %}</a></li>
               <li><a href="#">Rss Feed</a></li>
-              <li><a href="#">Login</a></li>
+              <li><a href="#">{% blocktrans %} Saytga kirish {% endblocktrans %}</a></li>
               <li><a href="#">Life &amp; Style</a></li>
             </ul>
           </div>

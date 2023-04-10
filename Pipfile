@@ -5,8 +5,20 @@ name = "pypi"
 
 [packages]
 django = "==4.1"
-django-hitcount = "==1.3.0"
-django-modeltranslation = "*"
+django-hitcount = "==1.3.5"
+whitenoise = "==6.4.0"
+django-modeltranslation = "==0.18.9"
+python-gettext = "==5.0"
+gettex = "==1.0"
+asgiref = "==3.6.0"
+django-etc = "==1.4.0"
+modeltranslation = "==0.25"
+pillow = "==9.5.0"
+pylatexenc = "==2.10"
+sqlparse = "==0.4.3"
+typing-extensions = "==4.5.0"
+tzdata = "==2023.3"
+python-decouple = "*"
 
 [dev-packages]
 

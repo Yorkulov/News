@@ -1,5 +1,6 @@
 {% load static %}
 {% load i18n %}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,17 +34,17 @@
         <div class="header_top">
           <div class="header_top_left">
             <ul class="top_nav">
-              <li><a href="{% url 'HomePageView' %}">Home</a></li>
-              <li><a href="#">About</a></li>
-              <li><a href="{% url 'ContactPageView' %}">Contact</a></li>
+              <li><a href="{% url 'HomePageView' %}">{% blocktrans %} Bosh sahifa {% endblocktrans %}</a></li>
+              <li><a href="#">{% blocktrans %} Biz haqimiada {% endblocktrans %}</a></li>
+              <li><a href="{% url 'ContactPageView' %}">{% blocktrans %} Biz bilan bo'glanish {% endblocktrans %}</a></li>
             </ul>
           </div>
           <div class="header_top_right">
             {% if request.user.is_authenticated %}
-            <p><a href="{% url 'LogoutView' %}" style="color: palegreen; margin-left: 50px;">Log Out</a></p>
-            <p><a href="{% url 'UserProfile' %}" style="color: aqua; margin-left: 50px;">My Profile</a></p>
+            <p><a href="{% url 'LogoutView' %}" style="color: palegreen; margin-left: 50px;">{% blocktrans %} Saytdan chiqish {% endblocktrans %}</a></p>
+            <p><a href="{% url 'UserProfile' %}" style="color: aqua; margin-left: 50px;">{% blocktrans %} Mening Profilim {% endblocktrans %}</a></p>
             {% else %}
-            <p><a href="{% url 'LoginView' %}" style="color: aqua; margin-left: 50px;">Log In</a></p>
+            <p><a href="{% url 'LoginView' %}" style="color: aqua; margin-left: 50px;">{% blocktrans %} Saytga kirish {% endblocktrans %}</a></p>
             {% endif %}
             <p>{% now "j F Y H:i" %}</p>
           </div>
@@ -65,23 +66,23 @@
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav main_nav">
           <li class="active"><a href="{% url 'HomePageView' %}"><span class="fa fa-home desktop-home"></span><span class="mobile-show">Home</span></a></li>
-          <li><a href="{% url 'LocalNewsView' %}">O'zbekiston</a></li>
-          <li><a href="{% url 'ForeignNewsView' %}">Jahon</a></li>
-          <li><a href="{% url 'TechnologyNewsView' %}">Fan-Texnika</a></li>
-          <li><a href="{% url 'JamiyatNewsView' %}">Jamiyat</a></li>
-          <li><a href="{% url 'IqtisodiyotNewsView' %}">Iqtisodiyot</a></li>
-          <li><a href="{% url 'SportNewsView' %}">Sport</a></li>
-          <li><a href="{% url 'ContactPageView' %}">Contact Us</a></li>
-          <li><a href="{% url 'NotFound' %}">404 Page</a></li>
-          <li style="margin-top: 8px; margin-left: 200px">
+          <li><a href="{% url 'LocalNewsView' %}">{% blocktrans %} O'zbekiston {% endblocktrans %}</a></li>
+          <li><a href="{% url 'ForeignNewsView' %}">{% blocktrans %} Jahon {% endblocktrans %}</a></li>
+          <li><a href="{% url 'TechnologyNewsView' %}">{% blocktrans %} Fan-Texnika {% endblocktrans %}</a></li>
+          <li><a href="{% url 'JamiyatNewsView' %}">{% blocktrans %} Jamiyat {% endblocktrans %}</a></li>
+          <li><a href="{% url 'IqtisodiyotNewsView' %}">{% blocktrans %} Iqtisodiyot {% endblocktrans %}</a></li>
+          <li><a href="{% url 'SportNewsView' %}">{% blocktrans %} Sport {% endblocktrans %}</a></li>
+          <li><a href="{% url 'ContactPageView' %}"> {% blocktrans %} Biz bilan bo'g'lanish {% endblocktrans %}</a></li>
+          <li><a href="{% url 'NotFound' %}"> {% blocktrans %} 404 sahifa {% endblocktrans %}</a></li>
+          <li style="margin-top: 8px; position: absolute; right:200px">
             <form method="get" action="{% url 'search_results' %}">
               <input type="search" name="q" placeholder="Qidirish..." class="form-control" style="border-radius: 25px;">
             </form>
           </li>
-          <li style="margin-top: 8px; margin-left: 50px;">
+          <li style="position: absolute; right: 0;">
             <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
                 <input name="next" type="hidden" value="{{ redirect_to }}">
-                <select name="language" style="padding: 8px 10px;  border-top-left-radius: 25px; border-bottom-left-radius: 25px;">
+                <select name="language" style="padding: 8px 12px; border-top-left-radius: 25px; border-bottom-left-radius: 25px; margin-top: 7px;">
                     {% get_current_language as LANGUAGE_CODE %}
                     {% get_available_languages as LANGUAGES %}
                     {% get_language_info_list for LANGUAGES as languages %}
@@ -91,7 +92,7 @@
                         </option>
                     {% endfor %}
                 </select>
-                <input type="submit" value="Tasdiqlash" class="btn-success" style="padding: 7px 10px;  border-bottom-right-radius: 25px; border-top-right-radius: 25px;">
+                <input type="submit" value="Go" style="padding: 7px 12px; border-top-right-radius: 25px; border-bottom-right-radius: 25px; margin-top: 7px;">
             </form>
           </li>
         </ul>
@@ -101,7 +102,7 @@
   <section id="newsSection">
     <div class="row">
       <div class="col-lg-12 col-md-12">
-        <div class="latest_newsarea"> <span>So'ngi Yangiliklar</span>
+        <div class="latest_newsarea"> <span>{% blocktrans %} So'ngi yangiliklar {% endblocktrans %}</span>
           <ul id="ticker01" class="news_sticker">
             {% for news in latestNews %}
               <li><a href="{{ news.get_absolute_url }}"><img src="{{ news.image.url }}  " alt="Picture"> {{ news.title }} </a></li>
@@ -135,7 +136,7 @@
           <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-4">
               <div class="footer_widget wow fadeInLeftBig">
-                <h2>Flickr Images</h2>
+                <h2>{% blocktrans %} Top rasmlar {% endblocktrans %}</h2>
               </div>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4">
