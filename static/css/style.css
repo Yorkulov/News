@@ -417,6 +417,11 @@ img:hover {
     transition: all 0.5s
 }
 
+.content{
+    width: 100%;
+    padding: 50px 5px;
+}
+
 .dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus {
     color: #fff
 }
@@ -1887,4 +1892,37 @@ figure.effect-layla:hover figcaption::after, figure.effect-layla:hover h2, figur
             width: 32.1%
         }
     }
+}
+
+
+form label{
+    font-size: 20px;
+    color: black;
+}
+
+form input{
+    font-size: 20px;
+    color: white;
+    background-color: black;
+    outline: none;
+}
+
+form button{
+    font-size: 20px;
+    background-color: blue;
+    color: white;
+    border: none;
+    outline: none;
+    padding: 3px 12px;
+    border-radius: 7px;
+}
+
+.go_button{
+    font-size: 18px;
+    padding: 4px 12px; 
+    background-color: white;
+    color: black;
+    border-top-right-radius: 25px; 
+    border-bottom-right-radius: 25px; 
+    margin-top: 7px;
 }

@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
+# fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -34,7 +34,7 @@ msgid " Bosh sahifa "
 msgstr "Home"
 
 #: .\templates\news\base.html:38
-msgid " Biz haqimiada "
+msgid " Biz haqimizda "
 msgstr "About us"
 
 #: .\templates\news\base.html:39

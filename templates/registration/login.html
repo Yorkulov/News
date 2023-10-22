@@ -12,6 +12,7 @@
         {{ form.as_p }}
         <button type="submit" class="btn btn-success m-2">Login qilish</button>
         <a href="{% url 'password_reset' %}" class="btn btn-danger m-2">Parolni unutdingizmi</a>
+        <a href="{% url 'user_register' %}" class="btn btn-primary ">Sign Up</a>
     </form>
 
 {% endblock content %}

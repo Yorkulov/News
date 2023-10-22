@@ -94,6 +94,7 @@ def newsDetail(request, news):
 #     return render(request, "news/index.html", context)
 
 
+
 class HomePageView(ListView):
     model = News
     template_name = "news/index.html"
@@ -103,22 +104,12 @@ class HomePageView(ListView):
         context = super().get_context_data(**kwargs)
         context['category'] = Category.objects.all()
         context['newsList'] = News.objects.all().order_by('-publish_time')[:15]
-        context['localNewsOne'] = News.objects.all().filter(
-            category__name="O'zbekiston").order_by('-publish_time')[:1]
-        context['localNewsList'] = News.objects.all().filter(
-            category__name="O'zbekiston").order_by('-publish_time')[1:6]
-        # context['jahonNewsOne'] = News.objects.all().filter(
-        #     category__name="Jahon").order_by('-publish_time')[:1]
-        context['jahonNewsList'] = News.objects.all().filter(
-            category__name="Jahon").order_by('-publish_time')[:6]
-        # context['technologyNewsOne'] = News.objects.all().filter(
-        #     category__name="Fan-Texnika").order_by('-publish_time')[:1]
-        context['technologyNewsList'] = News.objects.all().filter(
-            category__name="Fan-Texnika").order_by('-publish_time')[:6]
-        # context['sportNewsOne'] = News.objects.all().filter(
-        #     category__name="Sport").order_by('-publish_time')[:1]
-        context['sportNewsList'] = News.objects.all().filter(
-            category__name="Sport").order_by('-publish_time')[:6]
+        context['localNewsOne'] = News.objects.all().filter(category__name__in=["Uzbekiston", 'Uzbekiston', 'Узбекистан']).order_by('-publish_time')[:1]
+        context['localNewsList'] = News.objects.all().filter(category__name__in=["Uzbekiston", 'Uzbekiston', 'Узбекистан']).order_by('-publish_time')[1:6]
+        context['jahonNewsList'] = News.objects.all().filter(category__name__in=["Jahon", 'Foreign', 'Mир']).order_by('-publish_time')[:6]
+        context['technologyNewsList'] = News.objects.all().filter(category__name__in=["Fan-Texnika", 'Science and Technology', 'Наука и технология']).order_by('-publish_time')[:6]
+        context['sportNewsList'] = News.objects.all().filter(category__name__in=['Sport', 'Виды спорта']).order_by('-publish_time')[:6] 
+        context['jamiyatNews'] = News.objects.filter(category__name__in=['Society', 'Jamiyat', 'Общество']).order_by('-publish_time')[:6]
 
         return context
 
@@ -134,8 +125,9 @@ class HomePageView(ListView):
 
 
 def notFound(request):
+    newsList = News.objects.all().order_by('-publish_time')[:4]
     context = {
-
+        'newsList' : newsList
     }
     return render(request, "news/404.html", context)
 
@@ -155,18 +147,22 @@ class ContactPageView(TemplateView):
 
     def get(self, request, *args, **kwargs):
         form = ContactForm()
+        newsList = News.objects.filter(status=News.Status.Published)
         context = {
-            "form": form
+            "form": form,
+            "newsList": newsList
         }
         return render(request, 'news/contact.html', context)
 
     def post(self, request, *args, **kwargs):
         form = ContactForm(request.POST)
+        newsList = News.objects.filter(status=News.Status.Published)
         if request.method == 'POST' and form.is_valid():
             form.save()
             return HttpResponse("<h1> Malumotlaringiz muvaffiqiyatli uzatildi </h1>")
         context = {
-            "form": form
+            "form": form,
+            "newsList": newsList
         }
         return render(request, 'news/contact.html', context)
 
@@ -177,7 +173,7 @@ class LocalNewsView(ListView):
     context_object_name = "localNews"
 
     def get_queryset(self):
-        localNews = News.published.all().filter(category__name = 'O\'zbekiston').order_by('-publish_time')
+        localNews = News.published.all().filter(category__name__in=["Uzbekiston", 'Uzbekiston', 'Узбекистан']).order_by('-publish_time')
         return localNews
     
 
@@ -187,7 +183,7 @@ class ForeignNewsView(ListView):
     context_object_name = "foreignNews"
 
     def get_queryset(self):
-        foreignNews = News.published.all().filter(category__name = 'Jahon').order_by('-publish_time')
+        foreignNews = News.published.all().filter(category__name__in=["Jahon", 'Foreign', 'Mир']).order_by('-publish_time')
         return foreignNews
     
 
@@ -197,7 +193,7 @@ class JamiyatNewsView(ListView):
     context_object_name = "jamiyatNews"
 
     def get_queryset(self):
-        jamiyatNews = News.published.all().filter(category__name = 'Jamiyat').order_by('-publish_time')
+        jamiyatNews = News.published.all().filter(category__name__in=['Society', 'Jamiyat', 'Общество']).order_by('-publish_time')
         return jamiyatNews
     
 
@@ -207,7 +203,7 @@ class IqtisodiyotNewsView(ListView):
     context_object_name = "iqtisodiyotNews"
 
     def get_queryset(self):
-        iqtisodiyotNews = News.published.all().filter(category__name = 'Iqtisodiyot').order_by('-publish_time')
+        iqtisodiyotNews = News.published.all().filter(category__name__in = ['Iqtisodiyot', 'Экономика', 'Economy']).order_by('-publish_time')
         return iqtisodiyotNews
     
 
@@ -217,7 +213,7 @@ class TechnologyNewsView(ListView):
     context_object_name = "technologyNews"
 
     def get_queryset(self):
-        technologyNews = News.published.all().filter(category__name = 'Fan-Texnika').order_by('-publish_time')
+        technologyNews = News.published.all().filter(category__name__in=["Fan-Texnika", 'Science and Technology', 'Наука и технология']).order_by('-publish_time')
         return technologyNews
     
 
@@ -227,7 +223,7 @@ class SportNewsView(ListView):
     context_object_name = "sportNews"
 
     def get_queryset(self):
-        sportNews = News.published.all().filter(category__name = 'Sport').order_by('-publish_time')
+        sportNews = News.published.all().filter(category__name__in=['Sport', 'Виды спорта']).order_by('-publish_time')
         return sportNews
     
 

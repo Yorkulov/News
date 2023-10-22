@@ -76,7 +76,7 @@
           <li><a href="{% url 'NotFound' %}"> {% blocktrans %} 404 sahifa {% endblocktrans %}</a></li>
           <li style="margin-top: 8px; position: absolute; right:200px">
             <form method="get" action="{% url 'search_results' %}">
-              <input type="search" name="q" placeholder="Qidirish..." class="form-control" style="border-radius: 25px;">
+              <input type="search" name="q" placeholder="{% blocktrans %} Qidirish {% endblocktrans %}..." class="form-control" style="border-radius: 25px;">
             </form>
           </li>
           <li style="position: absolute; right: 0;">
@@ -92,7 +92,7 @@
                         </option>
                     {% endfor %}
                 </select>
-                <input type="submit" value="Go" style="padding: 7px 12px; border-top-right-radius: 25px; border-bottom-right-radius: 25px; margin-top: 7px;">
+                <input type="submit" value="Go" class="go_button">
             </form>
           </li>
         </ul>
@@ -126,9 +126,11 @@
   </section>
   <section id="sliderSection">
 
+    <div class="content">
     {% block content %}
 
     {% endblock content %}
+    </div>
 
 
     <footer id="footer">

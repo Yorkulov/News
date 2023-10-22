@@ -110,7 +110,5 @@ def dashboard(request):
         "user": user,
         "profile": profile
     }
-
-    print(profile.photo)
     
     return render(request, "pages/dashboard.html", context)
